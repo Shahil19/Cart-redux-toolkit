@@ -1,7 +1,8 @@
 import React from 'react';
 import { ChevronDown, ChevronUp } from '../icons';
 
-const CartItem = ({ img, title, price, amount }) => {
+const CartItem = ({ img, title, price, amount, id }) => {
+
     return (
         <article className='cart-item'>
             <img src={img} alt={title} />
@@ -11,7 +12,8 @@ const CartItem = ({ img, title, price, amount }) => {
                 <button className="remove-btn">remove</button>
             </div>
             <div>
-                <button className="amount-btn">
+                <button
+                    className="amount-btn">
                     <ChevronUp />
                 </button>
                 <p className="amount">{amount}</p>
