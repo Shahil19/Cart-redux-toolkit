@@ -29,17 +29,31 @@ const cartSlice = createSlice({
                 }
             }
         },
+
         increase: (state, action) => {
             const cartItem = state.cartItems.find(item => item.id === action.payload.id)
             cartItem.amount += 1
         },
+
         decrease: (state, action) => {
             const cartItem = state.cartItems.find(item => item.id === action.payload.id)
-            console.log(cartItem);
             cartItem.amount -= 1
         },
+
+        calculateTotal: (state) => {
+            let amount = 0;
+            let total = 0;
+
+            state.cartItems.forEach(item => {
+                amount = amount + item.amount
+                total = total + (item.price * item.amount)
+            })
+
+            state.amount = amount
+            state.total = total
+        }
     }
 })
 // console.log(cartSlice);
-export const { clearCart, removeItem, increase, decrease } = cartSlice.actions
+export const { clearCart, removeItem, increase, decrease, calculateTotal } = cartSlice.actions
 export default cartSlice.reducer
